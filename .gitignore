@@ -1,5 +1,6 @@
 # packaging
 dist
+k_simple_http_dns.egg-info
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
