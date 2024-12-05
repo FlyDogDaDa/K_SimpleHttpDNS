@@ -1,8 +1,13 @@
 import os
 import uvicorn
 from dotenv import load_dotenv
-from k_simple_http_dns.MyIPLookUp import MyIPLookUp, request_myip
-from k_simple_http_dns.LAN_DNS import LAN_DNS, LocalAreaDNS, LocalAreaDNS_FastAPI_server
+from k_simple_http_dns.MyIPLookUp_Server import MyIPLookUp
+from k_simple_http_dns import MyIPLookUp_Client
+from k_simple_http_dns.LAN_DNS_Server import (
+    LAN_DNS,
+    LocalAreaDNS,
+    LocalAreaDNS_FastAPI_server,
+)
 
 
 def main():
@@ -15,7 +20,7 @@ def main():
     MyIPLookUp.set_host(host)
     MyIPLookUp.set_port(port)
 
-    LAN_host = request_myip()
+    LAN_host = MyIPLookUp_Client.request_myip()
     LAN_port = int(os.getenv("LOCAL_DNS_PORT"))
     alliance_DNS_hosts = os.getenv("alliance_DNS_hosts").split("|")
     LAN_DNS.set_port(LAN_port)
