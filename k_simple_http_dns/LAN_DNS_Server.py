@@ -1,15 +1,12 @@
-import os
 import logging
 from typing import Callable, Union, Any
 from abc import ABC, abstractmethod
-from functools import lru_cache
-
-from k_simple_http_dns.Informations import ServiceInfo
 
 import requests
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from threading import Thread
+
 
 
 # 載入環境變數
@@ -30,7 +27,7 @@ class LAN_DNS:
         return cls.__port
 
 
-class WritableDNS:
+class WritableDNS(ABC):
     @abstractmethod
     def update(self, info_dict: dict[str, ServiceInfo]) -> None:
         pass
