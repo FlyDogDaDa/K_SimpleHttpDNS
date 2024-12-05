@@ -1,5 +1,3 @@
-import os
-import requests
 from fastapi import FastAPI, Request
 
 
@@ -40,20 +38,3 @@ def get_MyIP_FastAPI_server():
         return request.client.host
 
     return app, (get_client_host,)
-
-
-def get_requests_host_url() -> str:
-    return f"http://{MyIPLookUp.get_host()}:{MyIPLookUp.get_port()}/host/"
-
-
-def request_myip() -> str:
-    url = get_requests_host_url()
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-    except requests.exceptions.ConnectionError as e:
-        raise e
-        print(
-            "Failed to connect to the MyIP service, usually because the server is offline."
-        )
-    return response.json()
