@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from threading import Thread
 
+from .Informations import ServiceInfo
 
 
 # 載入環境變數
